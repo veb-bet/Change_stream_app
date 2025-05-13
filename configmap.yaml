@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: change-stream-config
+data:
+  config.json: |
+    {
+      "mongodb": {
+        "uri": "mongodb://mongo:27017",
+        "database": "mydatabase"
+      },
+      "services": [
+        {
+          "name": "service1",
+          "collections": ["collection1", "collection2"]
+        },
+        {
+          "name": "service2",
+          "collections": ["collection3", "collection4"]
+        }
+      ]
+    }

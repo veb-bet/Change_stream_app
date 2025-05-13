@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: change-stream-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: change-stream-app
+  template:
+    metadata:
+      labels:
+        app: change-stream-app
+    spec:
+      containers:
+      - name: change-stream-app
+        image: change-stream-app:latest
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config.json
+          subPath: config.json
+      volumes:
+      - name: config-volume
+        configMap:
+          name: change-stream-config
